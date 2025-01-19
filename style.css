@@ -1,0 +1,75 @@
+:root {
+  --button-width: 24px;
+  --button-height: 24px;
+  --button-bg-color: #a9a9a9;
+
+  --bar-width: 20px;
+  --bar-thickness: 2px;
+  --bar-bg-color: #000;
+
+  --bar-transition: 0.3s ease-in-out;
+  --middle-bar-transition: 0.15s ease-in-out;
+}
+
+/* Styles globaux */
+body {
+  display: flex;
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* Bouton */
+.button {
+  all: unset;
+  position: relative;
+  margin: auto;
+  width: var(--button-width);
+  height: var(--button-height);
+  background-color: var(--button-bg-color);
+  transform: scale(20);
+}
+
+/* Styles généraux des barres */
+.bar {
+  position: absolute;
+  width: var(--bar-width);
+  height: var(--bar-thickness);
+  left: calc((var(--button-width) - var(--bar-width)) / 2);
+  background-color: var(--bar-bg-color);
+}
+
+/* Transitions des barres */
+.top-bar,
+.bottom-bar {
+  transition: transform var(--bar-transition);
+}
+
+.middle-bar {
+  transition: opacity var(--middle-bar-transition);
+}
+
+/* Positionnement initial des barres*/
+.top-bar {
+  top: 5px;
+}
+
+.middle-bar {
+  top: calc(12px - (var(--bar-thickness) / 2));
+}
+
+.bottom-bar {
+  top: 17px;
+}
+
+/* Animation des barres */
+.button.active .top-bar {
+  transform: translateY(calc(7px - var(--bar-thickness) / 2)) rotate(45deg);
+}
+
+.button.active .middle-bar {
+  opacity: 0;
+}
+
+.button.active .bottom-bar {
+  transform: translateY(calc(-7px + var(--bar-thickness) / 2)) rotate(-45deg);
+}
